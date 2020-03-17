@@ -86,7 +86,8 @@ class MarketShareByYearExchWithData extends Component {
           name,
           type: "bar",
           barMaxWidth: 50,
-          stack: "mktShare",
+          stack: "dailyVolume",
+          symbol: "none",
           itemStyle: { normal: { areaStyle: { type: "default" } } },
           data: processedData[name]
         };

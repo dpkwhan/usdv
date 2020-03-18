@@ -39,7 +39,7 @@ class MarketShareByYearExch extends ChartComponent {
       },
       toolbox: {
         show: true,
-        right: "5%",
+        right: "1%",
         feature: {
           magicType: {
             show: true,
@@ -83,7 +83,10 @@ class MarketShareByYearExch extends ChartComponent {
           formatter: function(value, index) {
             return numeral(value).format("0a");
           }
-        }
+        },
+        name: "Shares",
+        nameLocation: "center",
+        nameGap: 22
       },
       dataZoom: [
         {

@@ -9,7 +9,8 @@ class MarketShareByYearExch extends ChartComponent {
   }
 
   makeChartOptions(props) {
-    const { legendData, xAxisData, series } = props.data;
+    const { method, data } = props;
+    const { legendData, xAxisData, series } = data;
     const style =
       "display:inline-block;margin-right:5px;border-radius:10px;width:9px;height:9px";
     const colorSpan = color =>
@@ -26,7 +27,8 @@ class MarketShareByYearExch extends ChartComponent {
           rez += "<table>";
           params.forEach(item => {
             const colorEle = colorSpan(item.color);
-            const pct = numeral(item.data).format("0.0a");
+            const fmt = method === "mktVolume" ? "0.0a" : "0.0%";
+            const pct = numeral(item.data).format(fmt);
             const xx = `<tr><td style="text-align:left">${colorEle} ${item.seriesName}</td><td style="text-align:right;padding-left:5px">${pct}</td></tr>`;
             rez += xx;
           });
@@ -54,7 +56,10 @@ class MarketShareByYearExch extends ChartComponent {
             show: true,
             title: "Save As Image",
             type: "png",
-            name: "daily-volume-by-exchange"
+            name:
+              method === "mktVolume"
+                ? "daily-volume-by-exchange"
+                : "market-share-by-exchange"
           }
         },
         orient: "vertical",
@@ -81,24 +86,26 @@ class MarketShareByYearExch extends ChartComponent {
         max: "dataMax",
         axisLabel: {
           formatter: function(value, index) {
-            return numeral(value).format("0a");
+            return method === "mktVolume"
+              ? numeral(value).format("0a")
+              : numeral(value).format("%");
           }
         },
-        name: "Shares",
-        nameLocation: "center",
+        name: method === "mktVolume" ? "Market Volume" : "Market Share (%)",
+        nameLocation: "end",
         nameGap: 22
       },
       dataZoom: [
         {
           type: "inside",
-          start: 85,
+          start: 97,
           end: 100
         },
         {
           show: true,
           type: "slider",
           top: "95%",
-          start: 85,
+          start: 97,
           end: 100
         }
       ],

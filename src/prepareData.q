@@ -2,7 +2,7 @@ dataDir:"D:/data/cboe/daily_volume/";
 srcDir:"C:/Users/david/workspace/git/usdv/src/";
 system "cd ",dataDir;
 
-years:-10#2020-til 2;
+years:2020-til 10;
 fnames: ":daily_volume_" ,/: (string years) ,\: ".csv";
 cboeDaily:raze 0:[("DSFFFFFFFFJJJJ"; enlist ",")] each `$fnames;
 cnames:`date`sym`tapeAShares`tapeBShares`tapeCShares`totalShares`tapeANotional`tapeBNotional`tapeCNotional`totalNotional`tapeATradeCount`tapeBTradeCount`tapeCTradeCount`totalTradeCount;
@@ -24,10 +24,16 @@ cboeDaily:update sym:`$"NASDAQ BX" from cboeDaily where sym in (`$"BEX (B)";`$"N
 cboeDaily:update sym:`$"NASDAQ PSX" from cboeDaily where sym in (`$"PSX (X)";`$"NASDAQ PSX (X)";`$"NASDAQ PSX (X)";`$"PHLX (X)");
 cboeDaily:update sym:`$"IEX" from cboeDaily where sym=`$"IEX (V)";
 cboeDaily:update sym:`$"TRF" from cboeDaily where sym in trfs;cboeDaily:`date`sym xasc cboeDaily;
-cboeDaily:update year:formatD2Y date,halfyear:formatD2H date,h:formatD2h date,quarter:formatD2Q date,q:formatD2q date,month:formatD2M date,week:formatD2W date from cboeDaily;
+cboeDaily:0!select sum totalShares by date,sym from cboeDaily;
 
 system "cd ",srcDir;
 exchanges:asc exec distinct sym from cboeDaily;
 default:exchanges!(count exchanges)#0;
-dailyVolumeByDateExch:0!exec (default,sym!totalShares) by date:date from cboeDaily;
-`:dailyVolumeByExch.json 0: enlist .j.j flip dailyVolumeByDateExch
+
+marketVolumeByExch:0!exec (default,sym!totalShares) by date:date from cboeDaily;
+`:marketVolumeByExch.json 0: enlist .j.j flip marketVolumeByExch;
+
+mktShares:(select date,sym,totalShares from cboeDaily) lj select mktVolume:sum totalShares by date from cboeDaily;
+mktShares:update mktShare:totalShares%mktVolume from mktShares;
+marketShareByExch:0!exec (default,sym!mktShare) by date:date from mktShares;
+`:marketShareByExch.json 0: enlist .j.j flip marketShareByExch;

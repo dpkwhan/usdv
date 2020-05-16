@@ -3,7 +3,7 @@ srcDir:"C:/Users/david/workspace/git/usdv/src/";
 system "cd ",dataDir;
 
 years:2020-til 10;
-fnames: ":daily_volume_" ,/: (string years) ,\: ".csv";
+fnames: ":market_history_" ,/: (string years) ,\: ".csv";
 cboeDaily:raze 0:[("DSFFFFFFFFJJJJ"; enlist ",")] each `$fnames;
 cnames:`date`sym`tapeAShares`tapeBShares`tapeCShares`totalShares`tapeANotional`tapeBNotional`tapeCNotional`totalNotional`tapeATradeCount`tapeBTradeCount`tapeCTradeCount`totalTradeCount;
 cboeDaily:cnames xcol cboeDaily;

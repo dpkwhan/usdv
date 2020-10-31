@@ -23,6 +23,10 @@ cboeDaily:update sym:`$"NASDAQ ISE" from cboeDaily where sym=`$"ISE (I)";
 cboeDaily:update sym:`$"NASDAQ BX" from cboeDaily where sym in (`$"BEX (B)";`$"NASDAQ BX (B)");
 cboeDaily:update sym:`$"NASDAQ PSX" from cboeDaily where sym in (`$"PSX (X)";`$"NASDAQ PSX (X)";`$"NASDAQ PSX (X)";`$"PHLX (X)");
 cboeDaily:update sym:`$"IEX" from cboeDaily where sym=`$"IEX (V)";
+cboeDaily:update sym:`$"IEX" from cboeDaily where sym=`$"Investors Exchange (V)";
+cboeDaily:update sym:`$"LTSE" from cboeDaily where sym=`$"LTSE (L)";
+cboeDaily:update sym:`$"MEMX" from cboeDaily where sym=`$"Members Exchange (U)";
+cboeDaily:update sym:`$"MIAX" from cboeDaily where sym=`$"MIAX Pearl (H)";
 cboeDaily:update sym:`$"TRF" from cboeDaily where sym in trfs;cboeDaily:`date`sym xasc cboeDaily;
 cboeDaily:0!select sum totalShares by date,sym from cboeDaily;
 

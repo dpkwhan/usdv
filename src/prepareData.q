@@ -1,4 +1,4 @@
-dataDir:"D:/data/cboe/daily_volume/";
+dataDir:"F:/data/cboe/daily_volume/";
 srcDir:"C:/Users/david/workspace/git/usdv/src/";
 system "cd ",dataDir;
 

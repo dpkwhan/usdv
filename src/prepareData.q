@@ -1,5 +1,5 @@
-dataDir:"F:/data/cboe/daily_volume/";
-srcDir:"C:/Users/david/workspace/git/usdv/src/";
+dataDir:"C:/data/dailyVolume/";
+srcDir:"C:/git/usdv/src/";
 system "cd ",dataDir;
 
 years:2020-til 10;

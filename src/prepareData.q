@@ -35,9 +35,9 @@ exchanges:asc exec distinct sym from cboeDaily;
 default:exchanges!(count exchanges)#0;
 
 marketVolumeByExch:0!exec (default,sym!totalShares) by date:date from cboeDaily;
-`:marketVolumeByExch.json 0: enlist .j.j flip marketVolumeByExch;
+hsym[`$"market-volume-by-exchange.json"] 0: enlist .j.j flip marketVolumeByExch;
 
 mktShares:(select date,sym,totalShares from cboeDaily) lj select mktVolume:sum totalShares by date from cboeDaily;
 mktShares:update mktShare:totalShares%mktVolume from mktShares;
 marketShareByExch:0!exec (default,sym!mktShare) by date:date from mktShares;
-`:marketShareByExch.json 0: enlist .j.j flip marketShareByExch;
+hsym[`$"market-share-by-exchange.json"] 0: enlist .j.j flip marketShareByExch;

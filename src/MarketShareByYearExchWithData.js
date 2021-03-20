@@ -2,8 +2,8 @@ import React, { Component, Fragment } from "react";
 import autoBind from "react-autobind";
 import { Row, Col, Radio } from "antd";
 import MarketShareByYearExch from "./MarketShareByYearExch";
-import marketVolumeByYearExch from "./marketVolumeByExch.json";
-import marketShareByYearExch from "./marketShareByExch.json";
+import marketVolumeByYearExch from "./market-volume-by-exchange.json";
+import marketShareByYearExch from "./market-share-by-exchange.json";
 
 class MarketShareByYearExchWithData extends Component {
   constructor(props, context) {

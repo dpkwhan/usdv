@@ -2,7 +2,7 @@ dataDir:"C:/data/";
 srcDir:"C:/git/usdv/src/";
 system "cd ",dataDir;
 
-years:2021-til 11;
+years:2021-til 12;
 fnames: ":market_history_" ,/: (string years) ,\: ".csv";
 cboeDaily:raze 0:[("DSFFFFFFFFJJJJ"; enlist ",")] each `$fnames;
 cnames:`date`sym`tapeAShares`tapeBShares`tapeCShares`totalShares`tapeANotional`tapeBNotional`tapeCNotional`totalNotional`tapeATradeCount`tapeBTradeCount`tapeCTradeCount`totalTradeCount;

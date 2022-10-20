@@ -41,3 +41,5 @@ mktShares:(select date,sym,totalShares from cboeDaily) lj select mktVolume:sum t
 mktShares:update mktShare:totalShares%mktVolume from mktShares;
 marketShareByExch:0!exec (default,sym!mktShare) by date:date from mktShares;
 hsym[`$"market-share-by-exchange.json"] 0: enlist .j.j flip marketShareByExch;
+
+ 
